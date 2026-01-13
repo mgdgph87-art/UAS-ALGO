@@ -1,0 +1,59 @@
+Manajemen_Nilai_Siswa
+
+DEKLARASI:
+    STRUKTUR Siswa:
+        nama : STRING
+        nilai : REAL
+        grade : CHAR
+    
+    daftarSiswa : LIST OF Siswa
+    pilihan : INTEGER
+    berjalan : BOOLEAN <- TRUE
+
+ALGORITMA:
+    WHILE berjalan = TRUE DO
+        TAMPILKAN "1. Tambah, 2. Tampilkan, 3. Statistik, 4. Keluar"
+        INPUT pilihan
+
+        SWITCH pilihan:
+            CASE 1:
+                INPUT namaSiswa, nilaiSiswa
+                IF nilaiSiswa >= 85 THEN grade <- 'A'
+                ELSE IF nilaiSiswa >= 75 THEN grade <- 'B'
+                ELSE IF nilaiSiswa >= 60 THEN grade <- 'C'
+                ELSE IF nilaiSiswa >= 45 THEN grade <- 'D'
+                ELSE grade <- 'E'
+                
+                SIMPAN data ke daftarSiswa
+                
+            CASE 2:
+                IF daftarSiswa KOSONG THEN
+                    TAMPILKAN "Data Kosong"
+                ELSE
+                    FOR setiap siswa DI daftarSiswa DO
+                        TAMPILKAN nama, nilai, dan grade
+                    ENDFOR
+                ENDIF
+                
+            CASE 3:
+                IF daftarSiswa TIDAK KOSONG THEN
+                    total <- 0
+                    tertinggi <- nilai siswa pertama
+                    terendah <- nilai siswa pertama
+                    
+                    FOR setiap siswa DI daftarSiswa DO
+                        total <- total + nilai
+                        IF nilai > tertinggi THEN tertinggi <- nilai
+                        IF nilai < terendah THEN terendah <- nilai
+                    ENDFOR
+                    
+                    rataRata <- total / jumlah_siswa
+                    TAMPILKAN rataRata, tertinggi, terendah
+                ENDIF
+                
+            CASE 4:
+                berjalan <- FALSE
+                TAMPILKAN "Keluar"
+        END SWITCH
+    END WHILE
+END PROGRAM
